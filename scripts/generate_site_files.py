@@ -1,46 +1,75 @@
 #!/usr/bin/env python3
 from datetime import datetime, timezone
 from pathlib import Path
+import re
 
 ROOT = Path('/Users/cc801/Documents/mitaojun-github-archive')
 BASE = 'https://mitaojun.com'
 
-EXCLUDE = {'post-template.html', 'post-minimal.html', 'contact-success.html'}
+EXCLUDE_FILES = {'post-template.html'}
+EXCLUDE_DIRS = {'.git', 'raw-mirror'}
 
-html_files = []
-for p in sorted(ROOT.glob('*.html')):
-    if p.name in EXCLUDE:
+
+def iter_html_files():
+    for p in sorted(ROOT.rglob('*.html')):
+        if any(part in EXCLUDE_DIRS for part in p.parts):
+            continue
+        if p.name in EXCLUDE_FILES:
+            continue
+        yield p
+
+
+def extract_meta(text, pattern):
+    m = re.search(pattern, text, re.IGNORECASE)
+    return m.group(1).strip() if m else None
+
+
+def is_noindex(text):
+    m = re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\']([^"\']+)["\']', text, re.IGNORECASE)
+    if not m:
+        return False
+    return 'noindex' in m.group(1).lower()
+
+
+urls = {}
+for p in iter_html_files():
+    text = p.read_text(encoding='utf-8', errors='ignore')
+    if is_noindex(text):
         continue
-    html_files.append(p)
+    canonical = extract_meta(text, r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']')
+    if not canonical:
+        # Fallback keeps sitemap resilient even if one page misses canonical.
+        rel = p.relative_to(ROOT).as_posix()
+        canonical = f'{BASE}/{rel}'
+    if canonical not in urls:
+        lastmod = datetime.fromtimestamp(p.stat().st_mtime, tz=timezone.utc).replace(microsecond=0).isoformat()
+        urls[canonical] = lastmod
 
-# sitemap.xml
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-for p in html_files:
-    if p.name == 'index.html':
-        url = f'{BASE}/'
-    else:
-        url = f'{BASE}/{p.name}'
+for url in sorted(urls):
     lines.append('  <url>')
     lines.append(f'    <loc>{url}</loc>')
-    lines.append(f'    <lastmod>{now}</lastmod>')
+    lines.append(f'    <lastmod>{urls[url]}</lastmod>')
     lines.append('  </url>')
 lines.append('</urlset>')
-(ROOT / 'sitemap.xml').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+xml = '\n'.join(lines) + '\n'
+(ROOT / 'sitemap.xml').write_text(xml, encoding='utf-8')
+(ROOT / 'sitemap-full.xml').write_text(xml, encoding='utf-8')
 
-# robots.txt
 robots = [
     'User-agent: *',
     'Allow: /',
     '',
     'Disallow: /admin/',
     'Disallow: /include/',
+    'Disallow: /raw-mirror/',
+    'Disallow: /post-template.html',
     '',
     f'Sitemap: {BASE}/sitemap.xml',
+    f'Sitemap: {BASE}/sitemap-full.xml',
 ]
 (ROOT / 'robots.txt').write_text('\n'.join(robots) + '\n', encoding='utf-8')
 
-# llms.txt
 llms = [
     '# llms.txt',
     '',
@@ -60,4 +89,4 @@ llms = [
 ]
 (ROOT / 'llms.txt').write_text('\n'.join(llms) + '\n', encoding='utf-8')
 
-print(f'Generated sitemap.xml ({len(html_files)} urls), robots.txt, llms.txt')
+print(f'Generated sitemap.xml/sitemap-full.xml ({len(urls)} canonical urls), robots.txt, llms.txt')
