@@ -880,6 +880,20 @@ main,
   font-size: 0.78rem;
 }
 
+.search-result-snippet {
+  margin: 0.12rem 0 0;
+  color: #607892;
+  font-size: 0.82rem;
+  line-height: 1.42;
+}
+
+.search-hit {
+  background: rgba(245, 229, 150, 0.58);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 0.08em;
+}
+
 .sidebar-list {
   list-style: none;
   padding: 0;

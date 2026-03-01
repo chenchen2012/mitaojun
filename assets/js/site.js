@@ -1,4 +1,33 @@
 (() => {
+  const escapeHtml = (str) => String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+  const escapeRegExp = (str) => String(str || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  const highlightText = (text, keyword) => {
+    if (!keyword) return escapeHtml(text);
+    const safe = escapeRegExp(keyword);
+    return escapeHtml(text).replace(new RegExp(safe, 'gi'), '<mark class="search-hit">$&</mark>');
+  };
+
+  const buildContextSnippet = (item, keyword) => {
+    const source = String(item.fulltext || item.text || '');
+    if (!source) return '';
+    const lower = source.toLowerCase();
+    const needle = keyword.toLowerCase();
+    const idx = lower.indexOf(needle);
+    if (idx < 0) return source.slice(0, 88);
+    const start = Math.max(0, idx - 28);
+    const end = Math.min(source.length, idx + keyword.length + 46);
+    const left = start > 0 ? '…' : '';
+    const right = end < source.length ? '…' : '';
+    return `${left}${source.slice(start, end)}${right}`;
+  };
+
   const loadScript = (src) => new Promise((resolve, reject) => {
     const existing = document.querySelector(`script[src="${src}"]`);
     if (existing) {
@@ -65,7 +94,9 @@
       }
       searchResults.innerHTML = items.slice(0, 12).map((item) => {
         const meta = metaText(item);
-        return `<li><a href=\"${item.url}\">${item.title}</a>${meta ? `<p class=\"search-result-meta\">${meta}</p>` : ''}</li>`;
+        const title = highlightText(item.title, keyword);
+        const snippet = highlightText(buildContextSnippet(item, keyword), keyword);
+        return `<li><a href=\"${item.url}\">${title}</a>${meta ? `<p class=\"search-result-meta\">${meta}</p>` : ''}${snippet ? `<p class=\"search-result-snippet\">${snippet}</p>` : ''}</li>`;
       }).join('');
     };
 
