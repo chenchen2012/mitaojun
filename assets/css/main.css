@@ -628,7 +628,12 @@ main,
 }
 
 .about-avatar {
-  display: none;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 0.15rem 0 0.48rem;
 }
 
 .sidebar-search-form {
@@ -1199,6 +1204,69 @@ main,
 
 .page-archive .world-v2-row:hover {
   background: rgba(233, 244, 255, 0.2);
+}
+
+.page-archive .world-v2-main {
+  max-width: 980px;
+  padding-top: 2.05rem;
+}
+
+.page-archive .world-v2-list {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 0.1rem 0;
+}
+
+.page-archive .world-v2-list::before {
+  content: none;
+}
+
+.page-archive .world-v2-row {
+  grid-template-columns: 5.8rem minmax(0, 1fr);
+  gap: 1.08rem;
+  padding: 1.02rem 0;
+  border-bottom: 1px solid rgba(179, 199, 222, 0.42);
+}
+
+.page-archive .world-v2-row:hover {
+  background: transparent;
+}
+
+.page-archive .world-v2-year {
+  color: #5f7f9f;
+  font-size: clamp(1.12rem, 2.1vw, 1.34rem);
+  letter-spacing: 0.02em;
+  padding-top: 0.22rem;
+}
+
+.page-archive .world-v2-row li,
+.page-archive .archive-month-entry {
+  grid-template-columns: 4.85rem minmax(0, 1fr);
+  column-gap: 0.8rem;
+}
+
+.page-archive .archive-month-label {
+  display: block;
+  font-size: 1rem;
+  color: #406080;
+  letter-spacing: 0.01em;
+}
+
+.page-archive .archive-month-posts {
+  grid-column: 2;
+  margin-top: 0.34rem;
+}
+
+.page-archive .archive-month-posts a {
+  display: block;
+  color: #4c6c8d;
+  line-height: 1.64;
+}
+
+.page-archive .world-v2-row time {
+  color: #7f97b1;
+  letter-spacing: 0.025em;
 }
 
 @media (max-width: 760px) {
