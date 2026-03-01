@@ -64,6 +64,16 @@
           </form>
           <ul id="sidebar-search-results" class="search-results" aria-live="polite"></ul>
         </section>
+        <script>
+          (function () {
+            var params = new URLSearchParams(window.location.search);
+            var q = (params.get('q') || params.get('keyword') || '').trim();
+            var input = document.getElementById('sidebar-search-input');
+            var results = document.getElementById('sidebar-search-results');
+            if (q && input) input.value = q;
+            if (q && results) results.innerHTML = '<li class="search-empty">正在搜索…</li>';
+          })();
+        </script>
       </article>
     </section>
   </main>

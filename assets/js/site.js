@@ -139,6 +139,7 @@
       const keyword = (params.get('q') || params.get('keyword') || '').trim();
       if (keyword) {
         searchInput.value = keyword;
+        searchResults.innerHTML = '<li class="search-empty">正在搜索…</li>';
         ensureFullIndexLoaded().then(() => {
           runSearch(keyword);
         });
