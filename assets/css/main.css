@@ -31,6 +31,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -1085,6 +1087,10 @@ main,
     max-width: none;
   }
 
+  .page-post .post-main {
+    padding-right: 0;
+  }
+
   .page-404 .page404-search,
   .page-404 .page404-search .sidebar-search-form {
     max-width: none;
@@ -1113,6 +1119,7 @@ main,
   }
 
   .post-article p {
+    font-size: 1rem;
     margin: 0 0 0.85rem;
   }
 
