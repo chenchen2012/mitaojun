@@ -73,7 +73,14 @@
   const searchForm = document.getElementById('sidebar-search-form');
   const searchInput = document.getElementById('sidebar-search-input');
   const searchResults = document.getElementById('sidebar-search-results');
+  const isSearchPage = document.body.classList.contains('page-search') || window.location.pathname.endsWith('/search.html') || window.location.pathname === '/search.html';
   let searchIndex = Array.isArray(window.MITAOJUN_SEARCH_INDEX) ? window.MITAOJUN_SEARCH_INDEX : [];
+
+  if (searchForm && searchInput) {
+    searchForm.setAttribute('action', '/search.html');
+    searchForm.setAttribute('method', 'get');
+    searchInput.setAttribute('name', 'q');
+  }
 
   if (searchForm && searchInput && searchResults) {
     let fullIndexPromise = null;
@@ -118,8 +125,8 @@
       }).join('');
     };
 
-    const runSearch = () => {
-      const keyword = searchInput.value.trim().toLowerCase();
+    const runSearch = (rawKeyword) => {
+      const keyword = String(rawKeyword || '').trim().toLowerCase();
       const results = searchIndex.filter((item) => {
         const blob = `${item.title} ${item.category || ''} ${item.text || ''} ${item.fulltext || ''}`.toLowerCase();
         return blob.includes(keyword);
@@ -127,32 +134,17 @@
       render(results, keyword);
     };
 
-    searchForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      await ensureFullIndexLoaded();
-      runSearch();
-    });
-
-    searchInput.addEventListener('input', () => {
-      const keyword = searchInput.value.trim();
-      if (!keyword) {
-        searchResults.innerHTML = '';
-        return;
-      }
-      if (needsFullIndex()) {
-        if (!fullIndexPromise) {
-          searchResults.innerHTML = '<li class="search-empty">正在加载搜索索引…</li>';
-        }
+    if (isSearchPage) {
+      const params = new URLSearchParams(window.location.search);
+      const keyword = (params.get('q') || params.get('keyword') || '').trim();
+      if (keyword) {
+        searchInput.value = keyword;
         ensureFullIndexLoaded().then(() => {
-          runSearch();
+          runSearch(keyword);
         });
       }
-      runSearch();
-    });
-
-    // Lazy-load full index only when user interacts with search.
-    searchInput.addEventListener('focus', () => {
-      ensureFullIndexLoaded();
-    }, { once: true });
+    } else {
+      searchResults.innerHTML = '';
+    }
   }
 })();
