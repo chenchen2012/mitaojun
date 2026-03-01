@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /include/
+
+Sitemap: https://mitaojun.com/sitemap.xml
+Sitemap: https://mitaojun.com/sitemap-full.xml

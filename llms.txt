@@ -1,0 +1,15 @@
+# llms.txt
+
+Site: 蜜桃君成长记 (mitaojun.com)
+Purpose: 个人博客存档站点
+
+## Allowed
+- 允许搜索引擎索引公开页面
+- 允许展示标题、链接与简短摘要
+
+## Disallowed
+- 不允许将本站全文用于模型训练
+- 不允许未经授权的大规模再分发
+
+## Contact
+- 联系作者: https://mitaojun.com/contact.html
