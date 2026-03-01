@@ -247,6 +247,38 @@ main,
   color: #3f6287;
 }
 
+.success-card {
+  max-width: 680px;
+  margin: 0.55rem auto 0;
+  padding: 1rem 0 1.65rem;
+  text-align: center;
+}
+
+.success-card h1 {
+  margin-bottom: 1.1rem;
+}
+
+.success-card p {
+  margin-bottom: 1.1rem;
+}
+
+.success-card .return-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #4f7194;
+  border: 1px solid rgba(160, 188, 216, 0.95);
+  border-radius: 10px;
+  padding: 0.44rem 0.88rem;
+  background: rgba(236, 245, 255, 0.82);
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.success-card .return-link:hover {
+  color: #3f6287;
+  border-color: #7ea7d6;
+  background: rgba(223, 238, 255, 0.96);
+}
+
 .page-home-bunko .site-header {
   padding-top: 1.2rem;
 }
