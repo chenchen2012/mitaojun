@@ -437,7 +437,7 @@ main,
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  line-height: 1.74;
+  line-height: 1.82;
 }
 
 .post-layout {
@@ -449,12 +449,12 @@ main,
 
 .page-post .post-layout {
   grid-template-columns: minmax(0, 1fr) 252px;
-  gap: 1.2rem;
+  gap: 1.45rem;
 }
 
 .page-post .post-main {
   padding-top: 1.95rem;
-  padding-right: 1.15rem;
+  padding-right: 1.35rem;
 }
 
 .page-post .post-article h1 {
@@ -465,7 +465,7 @@ main,
 }
 
 .page-post .post-article p {
-  margin: 0 0 1.08rem;
+  margin: 0 0 1.24rem;
 }
 
 .page-post .post-article h1 + p {
@@ -684,7 +684,7 @@ main,
   position: static;
   top: auto;
   margin-top: 0.18rem;
-  padding-left: 1.2rem;
+  padding-left: 1.35rem;
   border-left: 1px solid rgba(166, 190, 214, 0.22);
 }
 
