@@ -449,12 +449,12 @@ main,
 
 .page-post .post-layout {
   grid-template-columns: minmax(0, 1fr) 252px;
-  gap: 1.9rem;
+  gap: 2.6rem;
 }
 
 .page-post .post-main {
   padding-top: 1.95rem;
-  padding-right: 1.9rem;
+  padding-right: 2.6rem;
 }
 
 .page-post .post-article h1 {
@@ -684,7 +684,7 @@ main,
   position: static;
   top: auto;
   margin-top: 0.18rem;
-  padding-left: 1.9rem;
+  padding-left: 2.6rem;
   border-left: 1px solid rgba(166, 190, 214, 0.22);
 }
 
@@ -789,7 +789,7 @@ main,
 .page-post .site-header,
 .page-post main,
 .page-post .site-footer {
-  width: min(calc(100% - 5.2rem), 1040px);
+  width: min(calc(100% - 4.4rem), 1120px);
 }
 
 .sidebar-search-form {
