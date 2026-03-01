@@ -76,6 +76,24 @@
   let searchIndex = Array.isArray(window.MITAOJUN_SEARCH_INDEX) ? window.MITAOJUN_SEARCH_INDEX : [];
 
   if (searchForm && searchInput && searchResults) {
+    let fullIndexPromise = null;
+
+    const needsFullIndex = () => searchIndex.length < 150;
+    const ensureFullIndexLoaded = () => {
+      if (!needsFullIndex()) return Promise.resolve();
+      if (fullIndexPromise) return fullIndexPromise;
+      fullIndexPromise = loadScript('/assets/js/search-index.js')
+        .then(() => {
+          if (Array.isArray(window.MITAOJUN_SEARCH_INDEX) && window.MITAOJUN_SEARCH_INDEX.length) {
+            searchIndex = window.MITAOJUN_SEARCH_INDEX;
+          }
+        })
+        .catch(() => {
+          // Keep fallback inline index silently.
+        });
+      return fullIndexPromise;
+    };
+
     const metaText = (item) => {
       const parts = [];
       if (item.category && item.category !== '网络') parts.push(item.category);
@@ -109,27 +127,32 @@
       render(results, keyword);
     };
 
-    searchForm.addEventListener('submit', (event) => {
+    searchForm.addEventListener('submit', async (event) => {
       event.preventDefault();
+      await ensureFullIndexLoaded();
       runSearch();
     });
 
     searchInput.addEventListener('input', () => {
+      const keyword = searchInput.value.trim();
+      if (!keyword) {
+        searchResults.innerHTML = '';
+        return;
+      }
+      if (needsFullIndex()) {
+        if (!fullIndexPromise) {
+          searchResults.innerHTML = '<li class="search-empty">正在加载搜索索引…</li>';
+        }
+        ensureFullIndexLoaded().then(() => {
+          runSearch();
+        });
+      }
       runSearch();
     });
 
-    // Prefer full-site index; many pages still contain a tiny inline fallback list.
-    if (searchIndex.length < 150) {
-      loadScript('/assets/js/search-index.js')
-        .then(() => {
-          if (Array.isArray(window.MITAOJUN_SEARCH_INDEX) && window.MITAOJUN_SEARCH_INDEX.length) {
-            searchIndex = window.MITAOJUN_SEARCH_INDEX;
-            if (searchInput.value.trim()) runSearch();
-          }
-        })
-        .catch(() => {
-          // Keep fallback inline index silently.
-        });
-    }
+    // Lazy-load full index only when user interacts with search.
+    searchInput.addEventListener('focus', () => {
+      ensureFullIndexLoaded();
+    }, { once: true });
   }
 })();
