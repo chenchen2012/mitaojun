@@ -1,4 +1,18 @@
 (() => {
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(script);
+  });
+
   const yearNode = document.getElementById('year');
   if (yearNode) {
     yearNode.textContent = String(new Date().getFullYear());
@@ -30,7 +44,7 @@
   const searchForm = document.getElementById('sidebar-search-form');
   const searchInput = document.getElementById('sidebar-search-input');
   const searchResults = document.getElementById('sidebar-search-results');
-  const searchIndex = Array.isArray(window.MITAOJUN_SEARCH_INDEX) ? window.MITAOJUN_SEARCH_INDEX : [];
+  let searchIndex = Array.isArray(window.MITAOJUN_SEARCH_INDEX) ? window.MITAOJUN_SEARCH_INDEX : [];
 
   if (searchForm && searchInput && searchResults) {
     const metaText = (item) => {
@@ -72,5 +86,19 @@
     searchInput.addEventListener('input', () => {
       runSearch();
     });
+
+    // Prefer full-site index; many pages still contain a tiny inline fallback list.
+    if (searchIndex.length < 150) {
+      loadScript('/assets/js/search-index.js')
+        .then(() => {
+          if (Array.isArray(window.MITAOJUN_SEARCH_INDEX) && window.MITAOJUN_SEARCH_INDEX.length) {
+            searchIndex = window.MITAOJUN_SEARCH_INDEX;
+            if (searchInput.value.trim()) runSearch();
+          }
+        })
+        .catch(() => {
+          // Keep fallback inline index silently.
+        });
+    }
   }
 })();
