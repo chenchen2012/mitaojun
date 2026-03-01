@@ -1093,6 +1093,39 @@ main,
   border-top: 1px solid rgba(191, 208, 227, 0.34);
 }
 
+.archive-month-entry {
+  grid-template-columns: 4.2rem 1fr;
+}
+
+.archive-month-label {
+  color: #355676;
+  line-height: 1.62;
+  letter-spacing: 0.012em;
+}
+
+.archive-month-posts {
+  list-style: none;
+  margin: 0.52rem 0 0.08rem;
+  padding: 0;
+}
+
+.archive-month-posts li {
+  border-top: 0;
+  padding: 0.22rem 0;
+  display: block;
+}
+
+.archive-month-posts a {
+  color: #4d6c8c;
+  text-decoration: none;
+  font-size: 0.94rem;
+  line-height: 1.52;
+}
+
+.archive-month-posts a:hover {
+  color: #355676;
+}
+
 .world-v2-row li:first-child {
   border-top: 0;
 }
@@ -1199,6 +1232,15 @@ main,
   .world-v2-row li {
     grid-template-columns: 1fr;
     gap: 0.12rem;
+  }
+
+  .archive-month-posts {
+    margin-top: 0.24rem;
+  }
+
+  .archive-month-posts a {
+    font-size: 0.9rem;
+    line-height: 1.48;
   }
 
   .world-v2-row a {
