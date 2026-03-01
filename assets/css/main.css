@@ -531,6 +531,20 @@ main,
   border-bottom: 1px solid rgba(166, 190, 214, 0.24);
 }
 
+.post-article .qa-q,
+.post-article .qa-a {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.post-article .qa-q {
+  color: #6b7f97;
+}
+
+.post-article .qa-a {
+  color: #56708e;
+}
+
 .post-article blockquote {
   margin: 1.5rem 0;
   padding: 0.95rem 1.15rem;
