@@ -70,6 +70,13 @@
     document.body.appendChild(actions);
   }
 
+  document.querySelectorAll('.post-article ol[start]').forEach((list) => {
+    const start = Number.parseInt(list.getAttribute('start') || '1', 10);
+    if (Number.isFinite(start) && start > 1) {
+      list.style.setProperty('--ol-start', String(start - 1));
+    }
+  });
+
   const searchForm = document.getElementById('sidebar-search-form');
   const searchInput = document.getElementById('sidebar-search-input');
   const searchResults = document.getElementById('sidebar-search-results');

@@ -673,8 +673,30 @@ main,
   padding-left: 1.28rem;
 }
 
+.post-article ol {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: item var(--ol-start, 0);
+}
+
 .post-article li {
   margin: 0.3rem 0;
+}
+
+.post-article ol > li {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.post-article ol > li::before {
+  content: counter(item) ".";
+  counter-increment: item;
+  position: absolute;
+  left: 0;
+  top: 0.26em;
+  width: 1.5rem;
+  text-align: right;
+  color: var(--tone-mid);
 }
 
 .post-sidebar {
