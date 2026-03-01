@@ -801,6 +801,16 @@ main,
   align-items: center;
 }
 
+.page-404 .page404-search,
+.page-404 .page404-search .sidebar-search-form {
+  max-width: 640px;
+}
+
+.page-404 .page404-note {
+  margin: 0.2rem 0 0.95rem;
+  color: #607892;
+}
+
 .sidebar-search-form input {
   border: 1px solid #b9cae0;
   border-radius: 8px;
@@ -1072,6 +1082,11 @@ main,
   }
 
   .post-content-area {
+    max-width: none;
+  }
+
+  .page-404 .page404-search,
+  .page-404 .page404-search .sidebar-search-form {
     max-width: none;
   }
 }
