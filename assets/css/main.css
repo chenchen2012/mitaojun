@@ -629,8 +629,8 @@ main,
 
 .about-avatar {
   display: block;
-  width: 100%;
-  max-width: 100%;
+  width: 56%;
+  max-width: 56%;
   height: auto;
   object-fit: contain;
   border-radius: 10px;
