@@ -632,8 +632,15 @@ main,
   width: 100%;
   max-width: 100%;
   height: auto;
+  object-fit: contain;
   border-radius: 10px;
   margin: 0.15rem 0 0.48rem;
+}
+
+.page-post .site-header,
+.page-post main,
+.page-post .site-footer {
+  width: min(calc(100% - 5.2rem), 1040px);
 }
 
 .sidebar-search-form {
@@ -863,6 +870,12 @@ main,
 }
 
 @media (max-width: 840px) {
+  .page-post .site-header,
+  .page-post main,
+  .page-post .site-footer {
+    width: min(calc(100% - 2.6rem), var(--max));
+  }
+
   .archive-list li {
     grid-template-columns: 1fr;
     gap: 0.25rem;
