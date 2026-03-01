@@ -170,6 +170,83 @@ main,
   max-width: 760px;
 }
 
+.contact-main {
+  max-width: 760px;
+  padding: 2rem 0 2.6rem;
+}
+
+.contact-card {
+  padding: 0.2rem 0;
+}
+
+.contact-card h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.05rem, 2vw, 1.32rem);
+  color: #5f7893;
+  letter-spacing: 0.004em;
+}
+
+.contact-card p {
+  margin: 0 0 1rem;
+  color: #3f5873;
+}
+
+.contact-form {
+  margin-top: 1.1rem;
+  display: grid;
+  gap: 0.86rem;
+  max-width: 680px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.44rem;
+  color: #67819b;
+  font-size: 0.94rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  font: inherit;
+  color: #21364d;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(176, 198, 221, 0.9);
+  border-radius: 10px;
+  padding: 0.62rem 0.72rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.contact-form textarea {
+  min-height: 170px;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #7ea7d6;
+  box-shadow: 0 0 0 2px rgba(126, 167, 214, 0.18);
+}
+
+.contact-form button {
+  justify-self: start;
+  border: 1px solid rgba(149, 180, 212, 0.95);
+  border-radius: 10px;
+  padding: 0.52rem 0.96rem;
+  background: rgba(236, 245, 255, 0.9);
+  color: #4d6f90;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.contact-form button:hover {
+  border-color: #7ea7d6;
+  background: rgba(223, 238, 255, 0.96);
+  color: #3f6287;
+}
+
 .page-home-bunko .site-header {
   padding-top: 1.2rem;
 }
