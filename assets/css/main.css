@@ -449,12 +449,12 @@ main,
 
 .page-post .post-layout {
   grid-template-columns: minmax(0, 1fr) 252px;
-  gap: 1.45rem;
+  gap: 1.9rem;
 }
 
 .page-post .post-main {
   padding-top: 1.95rem;
-  padding-right: 1.35rem;
+  padding-right: 1.9rem;
 }
 
 .page-post .post-article h1 {
@@ -684,7 +684,7 @@ main,
   position: static;
   top: auto;
   margin-top: 0.18rem;
-  padding-left: 1.35rem;
+  padding-left: 1.9rem;
   border-left: 1px solid rgba(166, 190, 214, 0.22);
 }
 
