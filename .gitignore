@@ -1,2 +1,6 @@
 .DS_Store
 Thumbs.db
+
+# Private memory files
+MEMORY.md
+MEMORY.private.md
