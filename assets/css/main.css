@@ -1444,6 +1444,114 @@ main,
   letter-spacing: 0.025em;
 }
 
+/* Refined desktop aesthetics for archive + tag pages */
+.page-archive .world-v2-main,
+.page-sort .world-v2-main {
+  max-width: 1040px;
+  padding-top: 2.2rem;
+}
+
+.page-archive .world-v2-list,
+.page-sort .world-v2-list {
+  border: 1px solid rgba(174, 196, 220, 0.42);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.14));
+  box-shadow: 0 10px 30px rgba(55, 92, 132, 0.08);
+  padding: 0.9rem 1.35rem;
+}
+
+.page-archive .world-v2-list::before,
+.page-sort .world-v2-list::before {
+  content: none;
+}
+
+.page-archive .world-v2-row,
+.page-sort .world-v2-row {
+  grid-template-columns: 6.2rem minmax(0, 1fr);
+  gap: 1.18rem;
+  padding: 1.18rem 0;
+  border-bottom: 1px solid rgba(175, 197, 220, 0.34);
+}
+
+.page-archive .world-v2-row:last-child,
+.page-sort .world-v2-row:last-child {
+  border-bottom: 0;
+}
+
+.page-archive .world-v2-row:hover,
+.page-sort .world-v2-row:hover {
+  background: transparent;
+}
+
+.page-archive .world-v2-year,
+.page-sort .world-v2-year {
+  color: #5e7d9c;
+  font-size: clamp(1.04rem, 2vw, 1.28rem);
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  padding-top: 0.22rem;
+}
+
+.page-archive .world-v2-row li,
+.page-sort .world-v2-row li,
+.page-archive .archive-month-entry,
+.page-sort .archive-month-entry {
+  grid-template-columns: 5.1rem minmax(0, 1fr);
+  column-gap: 0.9rem;
+  padding: 0.52rem 0;
+}
+
+.page-archive .world-v2-row time,
+.page-sort .world-v2-row time {
+  color: #7c95af;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.page-archive .archive-month-label,
+.page-sort .archive-month-label {
+  display: block;
+  color: #3f5f80;
+  font-size: 1rem;
+  line-height: 1.56;
+  letter-spacing: 0.008em;
+}
+
+.page-archive .archive-month-posts,
+.page-sort .archive-month-posts {
+  grid-column: 2;
+  margin-top: 0.44rem;
+}
+
+.page-archive .archive-month-posts li,
+.page-sort .archive-month-posts li {
+  padding: 0.14rem 0;
+}
+
+.page-archive .archive-month-posts a,
+.page-sort .archive-month-posts a {
+  display: inline-block;
+  color: #4f6f8f;
+  line-height: 1.62;
+  border-radius: 6px;
+  padding: 0.08rem 0.16rem;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.page-archive .archive-month-posts a:hover,
+.page-sort .archive-month-posts a:hover {
+  color: #355676;
+  background: rgba(202, 222, 244, 0.28);
+}
+
+.page-sort .world-v2-row {
+  grid-template-columns: 7.4rem minmax(0, 1fr);
+}
+
+.page-sort .world-v2-year {
+  font-size: clamp(1.02rem, 1.75vw, 1.2rem);
+}
+
 @media (max-width: 760px) {
   .page-home-world-v2 .world-v2-main {
     padding-top: 1.1rem;
@@ -1508,5 +1616,52 @@ main,
 
   .world-v2-row a {
     font-size: 0.99rem;
+  }
+
+  .page-archive .world-v2-list,
+  .page-sort .world-v2-list {
+    border-radius: 12px;
+    padding: 0.55rem 0.8rem;
+  }
+
+  .page-archive .world-v2-row,
+  .page-sort .world-v2-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.95rem 0;
+  }
+
+  .page-archive .world-v2-year,
+  .page-sort .world-v2-year {
+    font-size: 1.05rem;
+    line-height: 1.3;
+    color: #6486a8;
+    padding-top: 0;
+  }
+
+  .page-archive .world-v2-row li,
+  .page-sort .world-v2-row li,
+  .page-archive .archive-month-entry,
+  .page-sort .archive-month-entry {
+    grid-template-columns: 1fr;
+    gap: 0.14rem;
+    padding: 0.46rem 0;
+  }
+
+  .page-archive .archive-month-label,
+  .page-sort .archive-month-label {
+    font-size: 0.95rem;
+  }
+
+  .page-archive .archive-month-posts,
+  .page-sort .archive-month-posts {
+    grid-column: auto;
+    margin-top: 0.22rem;
+  }
+
+  .page-archive .archive-month-posts a,
+  .page-sort .archive-month-posts a {
+    font-size: 0.92rem;
+    line-height: 1.5;
   }
 }
