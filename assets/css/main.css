@@ -901,6 +901,10 @@ main,
   border-bottom: 0;
 }
 
+.sidebar-categories .sidebar-list li:last-child {
+  display: none;
+}
+
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
