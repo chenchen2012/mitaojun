@@ -454,6 +454,7 @@ main,
 
 .page-post .post-main {
   padding-top: 1.95rem;
+  padding-right: 0.6rem;
 }
 
 .page-post .post-article h1 {
@@ -683,7 +684,7 @@ main,
   position: static;
   top: auto;
   margin-top: 0.18rem;
-  padding-left: 0.55rem;
+  padding-left: 0.78rem;
   border-left: 1px solid rgba(166, 190, 214, 0.22);
 }
 
