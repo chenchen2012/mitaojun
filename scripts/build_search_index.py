@@ -40,13 +40,18 @@ def get_date_category(html: str):
 
 
 def get_snippet(html: str) -> str:
+    full = get_fulltext(html)
+    return full[:140]
+
+
+def get_fulltext(html: str) -> str:
     m = re.search(r'<article[^>]*class="post-article"[^>]*>(.*?)</article>', html, re.I | re.S)
     block = m.group(1) if m else html
-    pm = re.search(r'<p(?![^>]*copyright-note)[^>]*>(.*?)</p>', block, re.I | re.S)
-    if not pm:
-        return ''
-    txt = strip_tags(pm.group(1))
-    return txt[:140]
+    # Remove obvious noise first.
+    block = re.sub(r'<script[^>]*>.*?</script>', ' ', block, flags=re.I | re.S)
+    block = re.sub(r'<style[^>]*>.*?</style>', ' ', block, flags=re.I | re.S)
+    block = re.sub(r'<p[^>]*class="[^"]*copyright-note[^"]*"[^>]*>.*?</p>', ' ', block, flags=re.I | re.S)
+    return strip_tags(block)
 
 
 entries = {}
@@ -59,6 +64,7 @@ for path in sorted(ROOT.glob('*.html')):
     title = get_title(html, path.stem)
     date, cat = get_date_category(html)
     snippet = get_snippet(html)
+    fulltext = get_fulltext(html)
     url = f'{BASE}/{path.name}'
     entries[url] = {
         'title': title,
@@ -66,6 +72,7 @@ for path in sorted(ROOT.glob('*.html')):
         'category': cat,
         'date': date,
         'text': snippet,
+        'fulltext': fulltext,
     }
 
 # raw mirror pages (full archive coverage)
@@ -86,12 +93,14 @@ if RAW.exists():
         dm = re.search(r'<time[^>]*datetime=\"(\\d{4}-\\d{2}-\\d{2})', html, re.I)
         date = dm.group(1) if dm else ''
         snippet = get_snippet(html)
+        fulltext = get_fulltext(html)
         entries[url] = {
             'title': title,
             'url': url,
             'category': '',
             'date': date,
             'text': snippet,
+            'fulltext': fulltext,
         }
 values = sorted(entries.values(), key=lambda x: x['url'])
 OUT.write_text(

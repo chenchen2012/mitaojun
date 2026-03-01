@@ -72,7 +72,7 @@
     const runSearch = () => {
       const keyword = searchInput.value.trim().toLowerCase();
       const results = searchIndex.filter((item) => {
-        const blob = `${item.title} ${item.category || ''} ${item.text || ''}`.toLowerCase();
+        const blob = `${item.title} ${item.category || ''} ${item.text || ''} ${item.fulltext || ''}`.toLowerCase();
         return blob.includes(keyword);
       });
       render(results, keyword);
