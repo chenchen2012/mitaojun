@@ -294,6 +294,13 @@ main,
   line-height: 1.74;
 }
 
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 0.9rem;
+  align-items: start;
+}
+
 .page-post .post-layout {
   grid-template-columns: minmax(0, 1fr) 252px;
   gap: 0.56rem;
