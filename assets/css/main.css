@@ -605,10 +605,7 @@ main,
 }
 
 .about-avatar {
-  width: 66%;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 0.5rem;
+  display: none;
 }
 
 .sidebar-search-form {
