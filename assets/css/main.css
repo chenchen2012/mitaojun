@@ -869,6 +869,7 @@ main,
   }
 
   .post-layout,
+  .page-post .post-layout,
   .page-post-minimal .post-layout {
     grid-template-columns: 1fr;
     gap: 0.9rem;
@@ -882,6 +883,12 @@ main,
     position: static;
     border-left: 0;
     padding-left: 0;
+  }
+
+  .page-post .post-sidebar {
+    border-left: 0;
+    padding-left: 0;
+    margin-top: 0.75rem;
   }
 
   .post-content-area {
