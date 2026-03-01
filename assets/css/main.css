@@ -309,7 +309,7 @@ main,
 .page-post .post-article h1 {
   margin: 0.42rem 0 1.9rem;
   font-size: clamp(0.98rem, 1.7vw, 1.22rem);
-  color: #4f6984;
+  color: #667f98;
   letter-spacing: 0.003em;
 }
 
@@ -327,13 +327,13 @@ main,
 }
 
 .page-post .post-article a {
-  color: #46637f;
-  text-decoration-color: rgba(70, 99, 127, 0.42);
+  color: #5d7590;
+  text-decoration-color: rgba(93, 117, 144, 0.34);
 }
 
 .page-post .post-article a:visited {
-  color: #576c84;
-  text-decoration-color: rgba(87, 108, 132, 0.4);
+  color: #66788f;
+  text-decoration-color: rgba(102, 120, 143, 0.34);
 }
 
 .page-post .post-article a:hover {
@@ -450,7 +450,7 @@ main,
 }
 
 .page-post .post-nav a {
-  color: #69839f;
+  color: #879aaf;
   padding: 0.58rem 0.66rem;
 }
 
@@ -470,7 +470,7 @@ main,
 }
 
 .page-post .nav-label {
-  color: #98aec2;
+  color: #bcc8d4;
 }
 
 .nav-title {
@@ -478,7 +478,7 @@ main,
 }
 
 .page-post .nav-title {
-  color: #5f7c98;
+  color: #869bb0;
 }
 
 .post-nav a:hover .nav-title {
@@ -518,9 +518,9 @@ main,
 .page-post .post-sidebar {
   position: static;
   top: auto;
-  margin-top: 0.02rem;
-  padding-left: 0.42rem;
-  border-left: 1px solid rgba(166, 190, 214, 0.28);
+  margin-top: 0.18rem;
+  padding-left: 0.55rem;
+  border-left: 1px solid rgba(166, 190, 214, 0.22);
 }
 
 .sidebar-widget {
@@ -537,16 +537,15 @@ main,
   background: transparent;
   box-shadow: none;
   border: 0;
-  padding: 0.52rem 0.56rem;
-  margin-bottom: 0.42rem;
+  padding: 0.7rem 0.65rem;
 }
 
 .page-post .search-widget {
   background: transparent;
   border: 0;
   box-shadow: none;
-  padding: 0.52rem 0.56rem;
-  margin-top: 0.2rem;
+  padding: 0.7rem 0.65rem;
+  margin-top: 0.6rem;
 }
 
 .page-post .search-widget h3 {
