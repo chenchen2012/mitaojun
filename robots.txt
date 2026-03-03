@@ -7,4 +7,3 @@ Disallow: /raw-mirror/
 Disallow: /post-template.html
 
 Sitemap: https://mitaojun.com/sitemap.xml
-Sitemap: https://mitaojun.com/sitemap-full.xml
