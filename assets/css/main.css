@@ -643,6 +643,22 @@ main,
   margin-top: 0.56rem;
 }
 
+.legacy-comments h2 {
+  margin: 0.7rem 0 0.35rem;
+  font-size: 0.98rem;
+  color: #516f89;
+}
+
+.legacy-comments > p:not(.legacy-comments-title):not(.legacy-comment-meta) {
+  margin: 0.42rem 0;
+}
+
+.legacy-comments blockquote {
+  margin: 0.5rem 0 0;
+  padding: 0.42rem 0 0.2rem 0.78rem;
+  border-left: 3px solid rgba(120, 157, 192, 0.38);
+}
+
 .post-nav {
   margin: 1.08rem auto 0;
   padding-top: 0.62rem;
