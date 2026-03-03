@@ -595,6 +595,46 @@ main,
   font-size: 0.95rem;
 }
 
+.legacy-comments {
+  margin: 1.25rem 0 0.4rem;
+  padding: 0.92rem 0.92rem 0.84rem;
+  border: 1px solid rgba(167, 189, 211, 0.36);
+  border-radius: 12px;
+  background: linear-gradient(165deg, rgba(248, 252, 255, 0.86), rgba(241, 248, 255, 0.78));
+}
+
+.legacy-comments-title {
+  margin: 0 0 0.62rem;
+  color: #5f7d9a;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
+.legacy-comment-card {
+  border-left: 3px solid rgba(120, 157, 192, 0.54);
+  padding-left: 0.72rem;
+}
+
+.legacy-comment-meta {
+  margin: 0;
+  display: flex;
+  gap: 0.62rem;
+  align-items: baseline;
+  color: #6e869e;
+  font-size: 0.84rem;
+}
+
+.legacy-comment-meta strong {
+  font-size: 0.92rem;
+}
+
+.legacy-comment-body {
+  margin: 0.48rem 0 0;
+  color: #526f8a;
+  font-size: 0.92rem;
+  line-height: 1.72;
+}
+
 .post-nav {
   margin: 1.08rem auto 0;
   padding-top: 0.62rem;
