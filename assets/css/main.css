@@ -515,6 +515,34 @@ main,
   margin: 0 0 1.12rem;
 }
 
+.post-article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-evidence {
+  margin: 0.4rem 0 0.42rem;
+}
+
+.about-evidence-image {
+  width: min(50%, 420px);
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(62, 87, 114, 0.08);
+}
+
+.about-evidence-caption {
+  margin: 0 0 1.15rem;
+  text-align: center;
+  color: #637b95;
+  font-size: 0.94rem;
+}
+
+.about-evidence-caption a {
+  text-decoration: none;
+}
+
 .post-article h1 + p {
   margin-top: 0.6rem;
   font-size: 1.08rem;
@@ -1180,6 +1208,10 @@ main,
 }
 
 @media (max-width: 560px) {
+  .about-evidence-image {
+    width: min(100%, 320px);
+  }
+
   .site-header,
   main,
   .site-footer {
