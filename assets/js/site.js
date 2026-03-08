@@ -1,6 +1,5 @@
 (() => {
   const GA_MEASUREMENT_ID = 'G-0L9V2H3H6J';
-  const BAIDU_HM_ID = '71e78e372cab1881685ab00b38154843';
 
   const escapeHtml = (str) => String(str || '')
     .replace(/&/g, '&amp;')
@@ -65,11 +64,6 @@
         .catch(() => {
           // Ignore analytics load failures.
         });
-
-      window._hmt = window._hmt || [];
-      loadScript(`https://hm.baidu.com/hm.js?${BAIDU_HM_ID}`).catch(() => {
-        // Ignore analytics load failures.
-      });
     };
   })();
 
