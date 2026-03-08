@@ -81,12 +81,13 @@
       scheduled = true;
 
       const kickoff = () => {
-        const run = () => loadAnalytics();
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(run, { timeout: 4000 });
-        } else {
-          window.setTimeout(run, 2500);
-        }
+        window.setTimeout(() => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(() => loadAnalytics(), { timeout: 12000 });
+            return;
+          }
+          loadAnalytics();
+        }, 8000);
       };
 
       if (document.readyState === 'complete') {
