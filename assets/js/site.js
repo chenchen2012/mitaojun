@@ -1,4 +1,7 @@
 (() => {
+  const GA_MEASUREMENT_ID = 'G-0L9V2H3H6J';
+  const BAIDU_HM_ID = '71e78e372cab1881685ab00b38154843';
+
   const escapeHtml = (str) => String(str || '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -41,6 +44,66 @@
     script.onerror = () => reject(new Error(`Failed to load ${src}`));
     document.head.appendChild(script);
   });
+
+  const loadAnalytics = (() => {
+    let started = false;
+
+    return () => {
+      if (started) return;
+      started = true;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function gtag() {
+        window.dataLayer.push(arguments);
+      };
+
+      loadScript(`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`)
+        .then(() => {
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID);
+        })
+        .catch(() => {
+          // Ignore analytics load failures.
+        });
+
+      window._hmt = window._hmt || [];
+      loadScript(`https://hm.baidu.com/hm.js?${BAIDU_HM_ID}`).catch(() => {
+        // Ignore analytics load failures.
+      });
+    };
+  })();
+
+  const scheduleAnalyticsLoad = (() => {
+    let scheduled = false;
+
+    return () => {
+      if (scheduled) return;
+      scheduled = true;
+
+      const kickoff = () => {
+        const run = () => loadAnalytics();
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(run, { timeout: 4000 });
+        } else {
+          window.setTimeout(run, 2500);
+        }
+      };
+
+      if (document.readyState === 'complete') {
+        window.setTimeout(kickoff, 1200);
+        return;
+      }
+
+      window.addEventListener('load', () => {
+        window.setTimeout(kickoff, 1200);
+      }, { once: true });
+    };
+  })();
+
+  ['pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+    window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+  });
+  scheduleAnalyticsLoad();
 
   const yearNode = document.getElementById('year');
   if (yearNode) {
