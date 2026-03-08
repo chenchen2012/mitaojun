@@ -1,9 +1,0 @@
-[    3492ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://web.archive.org/web/20190906233912cs_/http://www.cctv.com/common/style/message_list_news.css:0
-[    3499ms] TypeError: Cannot set properties of null (setting 'src')
-    at https://web.archive.org/web/20190825001527js_/http://www.cctv.com/js/ads.js:10:42
-[    3506ms] TypeError: Cannot set properties of undefined (setting 'C10005')
-    at https://web.archive.org/web/20190825001527js_/http://www.cctv.com/admanage/08/map.js:10:17
-[    4443ms] TypeError: getAds is not a function
-    at https://web.archive.org/web/20190825001527/http://www.cctv.com/kids/20060809/103164.shtml:551:11
-[    4584ms] Unexpected end of input
-[    5193ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://web.archive.org/web/20190825001527/http://web.archive.org/screenshot/http://www.cctv.com/kids/20060809/103164.shtml:0
