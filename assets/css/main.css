@@ -2275,22 +2275,22 @@ main,
 }
 
 .entity-link {
-  color: #486989;
+  color: var(--tone-link);
   text-decoration-line: underline;
-  text-decoration-color: rgba(72, 105, 137, 0.34);
+  text-decoration-color: rgba(79, 113, 148, 0.45);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.14em;
+  text-underline-offset: 2px;
   transition: color 0.18s ease, text-decoration-color 0.18s ease;
 }
 
 .entity-link:visited {
-  color: #516f8c;
-  text-decoration-color: rgba(81, 111, 140, 0.32);
+  color: #6e6a8f;
+  text-decoration-color: rgba(110, 106, 143, 0.38);
 }
 
 .entity-link:hover {
-  color: #345d88;
-  text-decoration-color: rgba(52, 93, 136, 0.58);
+  color: #2f6fb7;
+  text-decoration-color: rgba(79, 113, 148, 0.45);
 }
 
 .entity-link:focus-visible {
