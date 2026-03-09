@@ -2274,6 +2274,35 @@ main,
   line-height: 1.62;
 }
 
+.entity-link {
+  color: #486989;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(72, 105, 137, 0.34);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.entity-link:visited {
+  color: #516f8c;
+  text-decoration-color: rgba(81, 111, 140, 0.32);
+}
+
+.entity-link:hover {
+  color: #345d88;
+  text-decoration-color: rgba(52, 93, 136, 0.58);
+}
+
+.entity-link:focus-visible {
+  outline: 2px solid rgba(126, 167, 214, 0.7);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.entity-link-strong {
+  font-weight: 600;
+}
+
 .home-category-grid {
   grid-template-columns: 1.16fr 1fr;
 }
